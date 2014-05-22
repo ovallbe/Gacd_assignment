@@ -12,7 +12,7 @@ The script is going to show some coments and to show some information about diff
 
 
 
-#installing packages
+###installing packages
 
 ```r
 install.package <- "reshape2"
@@ -20,7 +20,7 @@ library(reshape2)
 ```
 
 
-#setting directories
+###setting directories
 
 ```r
 if(!file.exists("assignment")){dir.create("assignment")}
@@ -40,7 +40,7 @@ list.files("./UCI HAR Dataset/train")
 ```
 
 
-#getting meta_data
+###getting meta_data
 ```r
 activity_lbl <- read.table("./UCI HAR Dataset/activity_labels.txt", sep = "" , header=FALSE )
 dim(activity_lbl)
@@ -50,7 +50,7 @@ activity_lbl
 ```
 
 
-#renaming the variables names
+###renaming the variables names
 ```r
 features <- read.table("./UCI HAR Dataset/features.txt", sep = "", header = FALSE)
 dim(features)
@@ -60,7 +60,7 @@ features_lbl <- gsub(pattern="\\)",replacement="",features3)
 ```
 
 
-#getting and reshaping the train data
+###getting and reshaping the train data
 ```r
 train_data <- read.csv("./UCI HAR Dataset/train/X_train.txt", sep = "" , stringsAsFactors=FALSE, header=FALSE )
 sub_train <- read.csv("./UCI HAR Dataset/train/Subject_train.txt", sep = "" , stringsAsFactors=FALSE, header=FALSE )
@@ -75,7 +75,7 @@ colnames(sub_train) <- c("subject")
 colnames(train_data) <- features_lbl
 train_dataset <- cbind(train_dataLbl,sub_train,train_data)
 ```
-#getting and reshaping the test data
+###getting and reshaping the test data
 ```r
 test_data <- read.csv("./UCI HAR Dataset/test/X_test.txt", sep = "" , stringsAsFactors=FALSE, header=FALSE )
 sub_test <- read.csv("./UCI HAR Dataset/test/Subject_test.txt", sep = "" , stringsAsFactors=FALSE, header=FALSE )
@@ -94,19 +94,19 @@ test_dataset<- cbind(test_dataLbl,sub_test,test_data)
 ```
 
 
-#merging both datasets
+###merging both datasets
 ```r
 all_data <- rbind(train_dataset,test_dataset)
 all_data[1:2,1:5]
 ```
 
-#naming the labels
+###naming the labels
 ```r
 all_data_lbld <- merge(activity_lbl,all_data)
 all_data_lbld[1:2,1:5]
 ```
 
-#obtaining the first dataset
+###obtaining the first dataset
 ```r
 tidy_data_1 <- subset(all_data_lbld, select = grepl("mean|std", features_lbl))
 
@@ -115,7 +115,7 @@ dim(tidy_data_1)
 write.table(tidy_data_1, file = "tidy_data_1.txt", sep = "\t", row.names = FALSE)
 ```
 
-#obtaining the second tidy dataset
+###obtaining the second tidy dataset
 ```r
 melted_data<-melt(tidy_data_1,id=c("activity","subject"))
 
@@ -125,7 +125,7 @@ dim(tidy_data_2)
 
 write.table(tidy_data_2, file = "tidy_data_2.txt", sep = "\t", row.names = FALSE)
 ```
-#cleaning useless data
+###cleaning useless data
 
 ```r
 rm('train_dataset','test_dataset','train_data','test_data','all_data')
