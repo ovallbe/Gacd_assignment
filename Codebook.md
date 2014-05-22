@@ -23,12 +23,12 @@ https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Datas
 
 
 
-Analysis Variables
+##Analysis Variables
 
 
 Variable	            Descritpion
 Activity	            The activity peformed.
-
+===========================================
 Subject	              The ID of the subject.
 
 tBodyAcc-mean -X	    Mean time for acceleration of body for X direction.  
